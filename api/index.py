@@ -1,4 +1,10 @@
 import os
+import sys
+
+# Vercel은 api/ 디렉토리를 sys.path에 추가하므로
+# 프로젝트 루트(api/의 부모)를 명시적으로 추가해야
+# from api.routers import ... 가 정상 동작함
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
